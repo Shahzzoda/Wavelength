@@ -40,8 +40,8 @@ function consists of two for loops nested within each other. Outer loop
 repeats six times to advance to the next series, and inner loop runs ten
 times to print the excited and ground orbital levels as well as printing
 the calculated wavelengths emitted.Inside the outer loop but not the
-inner loops, the outfile statements are printed to ensure that each table
-has a header.
+inner loops, the outfile statements are printed to ensure that each
+table has a header.
 */
 
 #include <iostream>
@@ -92,9 +92,11 @@ int main()
     for(int ground=1; ground <= 6; ground++) {
 
         outfile << "\t" << seriesTitle(ground) << " SERIES" << endl
-             << "\t    (n= "<< ground << ")" << endl;
+             << "\t    (n = "<< ground << ")" << endl;
         outfile << "Excited:\t\t" << "Wavelength:";
 
+        outfile.setf(ios::fixed,ios::floatfield);
+        outfile.precision(3);
 
         for(int i = 1; i <= 10; i++) {
             excited += 1;
@@ -108,5 +110,6 @@ int main()
         outfile << endl << endl << endl;
     }//end of series loop
 
+    outfile.close();
     return 0;
 } //end of main
